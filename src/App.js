@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+// Filename - App.js
 
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Link,Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import Chat from "./component/Chat";
+import Login from "./component/Login";
+
+import "./App.css";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  // const navigate  = useNavigate();
+  const [isLoggedIn, setisLoggedIn]=useState(false);
 
+  useEffect(()=>{
+    if(!isLoggedIn){
+      // navigate('/', {replace: true})
+    }else{
+      // navigate('/login', {replace: true})
+    }
+  },[isLoggedIn]);
+  
+  return (
+   
+    <BrowserRouter>
+      
+      <Routes>
+      <Route path="/" element={<Chat />} />
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+        <Route path="/login" element={<Login />} />
+       
+      </Routes>
+    </BrowserRouter>
+  );
+};
 export default App;
