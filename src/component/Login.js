@@ -26,7 +26,7 @@ function Login() {
 
         const user = { name, email:email2, password:password2 };
         const response = await axios.post(
-            "http://localhost:5000/api/register",
+            process.env.REACT_APP_BACKEND+"/api/register",
             user
         );
         // set the state of the user
@@ -48,7 +48,7 @@ function Login() {
 
         const user = {  email:email, password:password};
         const response = await axios.post(
-            "http://localhost:5000/api/login",
+            process.env.REACT_APP_BACKEND+"/api/login",
             user
         );
         // set the state of the user
