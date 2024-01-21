@@ -16,7 +16,12 @@ function Login() {
     const [password2, setPassword2] = useState(null);
     const [user, setUser] = useState(null)
     const [isLoggedIn, setisLoggedIn]=useState(false);
-
+    let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+        }
+      };
     function handlerCount() {
         SetHide(!hide)
     }
@@ -27,7 +32,7 @@ function Login() {
         const user = { name, email:email2, password:password2 };
         const response = await axios.post(
             process.env.REACT_APP_BACKEND+"/api/register",
-            user
+            user,axiosConfig
         );
         // set the state of the user
         setUser(response.data)
@@ -49,7 +54,7 @@ function Login() {
         const user = {  email:email, password:password};
         const response = await axios.post(
             process.env.REACT_APP_BACKEND+"/api/login",
-            user
+            user,axiosConfig
         );
         // set the state of the user
         setUser(response.data)
