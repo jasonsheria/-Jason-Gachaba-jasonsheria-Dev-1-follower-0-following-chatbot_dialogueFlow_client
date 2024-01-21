@@ -23,7 +23,7 @@ function Home() {
     const navigate = useNavigate();
     function getUserFunction() {
         let bearer = 'Bearer ' + (localStorage.getItem('Loggin'));
-        axios.get(process.env.REACT_APP_BACKEND+"/api/me",
+        axios.get("http://localhost:5000/api/me",
             {
 
                 headers: { "Authorization": bearer }
@@ -42,7 +42,7 @@ function Home() {
 
     function getMessageFunction() {
         let bearer = 'Bearer ' + (localStorage.getItem('Loggin'));
-        axios.get(process.env.REACT_APP_BACKEND+"/api/getMessage",
+        axios.get("http://localhost:5000/api/getMessage",
             {
 
                 headers: { "Authorization": bearer }
@@ -59,7 +59,7 @@ function Home() {
 
             })
             .catch((error) => {
-                console.log("messages " + error)
+                console.log("meesages " + error)
             })
         console.log(data)
 
@@ -106,7 +106,7 @@ function Home() {
         if (message) {
             const user = { message, token: bearer };
             await axios.post(
-                process.env.REACT_APP_BACKEND+"/api/send",
+                "http://localhost:5000/api/send",
                 user
             )
                 .then((response) => {
