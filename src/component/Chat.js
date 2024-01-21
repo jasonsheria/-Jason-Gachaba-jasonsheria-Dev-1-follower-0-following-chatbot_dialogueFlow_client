@@ -19,14 +19,23 @@ function Home() {
     const [user, setUser] = useState(null);
     const [entete, setEntete] = useState('hide_b');
     const [isLoggedIn, setisLoggedIn] = useState(false);
-
+    let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+        }
+      };
     const navigate = useNavigate();
     function getUserFunction() {
         let bearer = 'Bearer ' + (localStorage.getItem('Loggin'));
         axios.get(process.env.REACT_APP_BACKEND+"/api/me",
             {
 
-                headers: { "Authorization": bearer }
+                headers: { 
+                    "Authorization": bearer,
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                 }
             }
 
         )
@@ -45,7 +54,11 @@ function Home() {
         axios.get(process.env.REACT_APP_BACKEND+"/api/getMessage",
             {
 
-                headers: { "Authorization": bearer }
+                headers: { 
+                    "Authorization": bearer,
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                 }
             }
 
         )
@@ -107,7 +120,7 @@ function Home() {
             const user = { message, token: bearer };
             await axios.post(
                 process.env.REACT_APP_BACKEND+"/api/send",
-                user
+                user,axiosConfig
             )
                 .then((response) => {
                     const fetchd = response.data
